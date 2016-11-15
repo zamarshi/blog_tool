@@ -1,0 +1,29 @@
+<h3 class="page_header">NEW<span class="green">&nbsp;//&nbsp;</span>USER</h3>
+<br><br><br><br><br>
+<div class="new">
+
+<%= form_for(@user, :html => { :class => "entry_form"} ) do |f| %>
+<div>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+</div>
+<div>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+</div>
+<div>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+</div>
+<div>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+</div>
+<div>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+<br><br>
+</div>
+<%= f.submit %>
+<% end %>
+</div>
