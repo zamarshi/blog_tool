@@ -1,20 +1,20 @@
-class FavoritesController < ApplicationController
+class FavouritesController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
-    @favorite = Favorite.new(post: @post, user: current_user)
-    if @favorite.save
-      redirect_to :back, notice: 'Post favorited!'
+    @favourite = Favourite.new(post: @post, user: current_user)
+    if @favourite.save
+      redirect_to :back, notice: 'Post favourited!'
     else
-      redirect_to :back, alert: 'Unable to favorite'
+      redirect_to :back, alert: 'Unable to favourite'
     end
   end
 
   def destroy
-    @favorite = Favorite.find(params[:id])
-    if @favorite.destroy
-    redirect_to :back, notice: 'Post unfavorited'
+    @favourite = Favourite.find(params[:id])
+    if @favourite.destroy
+    redirect_to :back, notice: 'Post unfavourited'
     else
-    redirect_to :back, alert: 'Unable to remove favorite'
+    redirect_to :back, alert: 'Unable to remove favourite'
     end
   end
 end

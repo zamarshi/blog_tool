@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       session[:user_id] = @user.id
-      redirect_to home_path
+      redirect_to root_path
     else
       render :new
     end
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @favorites = current_user.favorites
+    @favourites = current_user.favourites
     @user = current_user
   end
 
