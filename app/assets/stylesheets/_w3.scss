@@ -109,7 +109,7 @@ hr {
 
 button, input, select, textarea {
     font: inherit;
-    margin: 0
+    margin-left: 10px;
 }
 
 optgroup {
@@ -196,7 +196,8 @@ html {
 }
 
 h1, h2, h3, h4, h5, h6, .w3-slim, .w3-wide {
-    font-family: "Segoe UI", Arial, sans-serif
+  font-family: "Lucida Console", Monaco, monospace
+
 }
 
 h1 {
@@ -629,7 +630,8 @@ ul.w3-ul li:last-child {
 }
 
 .w3-select {
-    padding: 9px 0;
+
+    padding: 10px 0;
     width: 100%;
     color: #000;
     border: 1px solid transparent;

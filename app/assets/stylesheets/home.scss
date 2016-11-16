@@ -32,31 +32,45 @@ a:hover {
   display: inline-block;
 }
 
+#post_title {
+  margin: 3px;
+}
+
 input:focus {
     outline-color: $teal;
   }
 
 .new input {
-  width: 100%;
+
+   margin-left: 8px;
+  width: 25%;
   &:focus {
     outline-color: $teal;
   }
 }
 
 textarea {
-  width: 100%;
-  height: 200px;
+  margin-left: 0px;
+  width: 50%;
+  height: 100px;
   &:focus {
-    outline-color: $teal;
+    outline-color: orange;
   }
+
+}
+
+label {
+  // @extend .w3-label;
+  display:block;
+  margin-left: 10px;
 }
 
 .page_header {
   @extend .w3-left;
-  font-size: 40px;
+  font-size: 30px;
   margin-left: 10px;
   height: 50px;
-  letter-spacing: 10px
+  letter-spacing: 5px
 }
 
 .things {
@@ -69,7 +83,7 @@ textarea {
   font-size: 56px;
   opacity: 1;
     a:hover {
-      color: rgb(233, 151, 55);
+      color: orange;
     }
 }
 
@@ -118,4 +132,9 @@ textarea {
 
 .comment_form {
   height: 50px;
+}
+
+
+.chosen-container {
+  margin-left: 10px;
 }
