@@ -1,0 +1,18 @@
+<div class="w3-right w3-margin-right w3-margin-top">
+  <%= form_tag(posts_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+  <%= submit_tag "Search", name: nil %>
+<% end %>
+</div>
+
+
+<h2 class="page_header">All Posts </h2>
+<br><br>
+
+<div class="w3-threequarter w3-left w3-margin">
+<% @post_search.each do |p| %>
+<%= link_to p.title, post_path(p) %>
+<hr>
+<% end %>
+<%= will_paginate @post_search %>
+</div>

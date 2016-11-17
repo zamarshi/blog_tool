@@ -1,0 +1,8 @@
+<h3 class="page_header">YOUR<span class="green">&nbsp;//&nbsp;</span>FAVORITES   </h3>
+<br><br><br><br>
+<div class="w3-threequarter w3-left w3-margin large-list">
+  <% @favorites.each do |fav| %>
+  <%= link_to fav.post.title, post_path(fav.post) %>
+  <hr>
+  <% end %>
+</div>

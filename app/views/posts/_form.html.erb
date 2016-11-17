@@ -1,0 +1,31 @@
+<div class="new">
+<%= form_for(@post, :html => { :class => "entry_form"} ) do |p| %>
+<%= p.label :category %>
+<%= p.select :category_id,
+                Category.all.map{|c| [c.title, c.id]}%>
+</div>
+<br><br>
+<br>
+<div class="entry_form">
+  <%= p.label :title %> &nbsp;
+  <%= p.text_field :title %>
+</div><br>
+<div class="entry_form">
+  <%= p.label :body %> &nbsp;
+  <%= p.text_area :body %>
+</div><br>
+<div class="entry_form">
+    <%= p.label :tags  %>
+    <%= p.collection_select(
+      :tag_ids, Tag.all, :id, :name, {},
+      { multiple: true, class: 'chosen-select' }
+    ) %>
+</div><br>
+<div class="entry_form">
+<%= p.submit %>
+</div>
+<% end %>
+
+<script>
+  $('.chosen-select').chosen({ width: '100%' });
+</script>

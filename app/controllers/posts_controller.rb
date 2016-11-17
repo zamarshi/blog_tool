@@ -1,52 +1,69 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user, except: [:index, :show]
 
-def new
-  @post = Post.new
-end
 
-def create
-    @post = Post.new post_params
-    if @post.save
-      flash[:notice] = 'Post Created!'
-      redirect_to post_path(@post)
-    else
-      # if we juse use flash[:alert] in here then the flash message will persist
-      # to the next request as well. flash.now[:alert] will make it only show
-      # when you render the `:new` template but it won't persist to the next
-      # request
-      flash.now[:alert] = 'Please see errors below'
-      render :new
-    end
+  def new
+    @post = Post.new
+    @post.user = current_user
+    @categories = Category.all
   end
 
-  def edit
+  def create
+    post_params = params.require(:post).permit([:title, :body, :user_id,
+                                                :category_id, tag_ids: []])
+    @post = Post.new post_params
+    @post.user = current_user
+      if @post.save
+        redirect_to post_path(@post)
+      else
+        render :new
+      end
+  end
 
+  def show
+    @comment = Comment.new
+    @post = Post.find params[:id]
+  end
+
+  WillPaginate.per_page = 10
+
+  def index
+      if params[:search]
+        @post_search = Post.all.search(params[:search]).order("title ASC").paginate(:page => params[:page])
+      else
+        @post_search = Post.all.order('title ASC').paginate(:page => params[:page])
+      end
+    end
+
+  def edit
+    @post = Post.find params[:id]
   end
 
   def update
+    @post = Post.find params[:id]
+    post_params = params.require(:post).permit([:title, :body, :user_id,
+                                                :category_id, tag_ids: []])
+
     if @post.update post_params
-          flash[:notice] = 'Post updated'
-          redirect_to post_path(@post)
-        else
-          flash.now[:alert] = 'Please see errors below!'
-          render :edit
-        end
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
+
   end
 
-
-
-  def delete
+  def destroy
+    @post = Post.find params[:id]
     @post.destroy
-      # adding `notice: 'Question deleted'` to the redirect_to line will set a
-      # flash notice message as we did the create / update actions
-      # note that this only works for redirect and not for render
-      redirect_to posts_path, notice: 'Post deleted'
+    redirect_to posts_path
   end
 
   private
 
-  def post_params
-    params.require(:post).permit(:title, :body)
+  def authorize_access
+    unless can? :manage, @post
+      redirect_to home_path, notice: "Access denied"
+    end
   end
 
 end

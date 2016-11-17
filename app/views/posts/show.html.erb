@@ -1,0 +1,47 @@
+<h1 class="post title"><%= @post.title %></h1>
+ <p class="post"><%= @post.user_full_name%></p>
+ <p class="post"><%= @post.body %></p>
+ <div class="post">
+
+ <% if can? :manage, @post %>
+   <%= link_to 'Edit', edit_post_path %>
+   <%= link_to 'Delete', post_path(@post), method: :delete,
+                                           data: {confirm: "Are you sure?"} %>
+   <% end %>
+ <br><br>
+ <% @post.tags.each do |tag| %>
+   <div class="w3-btn w3-round w3-teal" style="padding:3px">
+     <div class="w3-btn w3-round w3-teal">
+       <div class="tag_link">
+         <%= link_to tag.name, tag_path(tag) %>
+       </div>
+     </div>
+   </div>
+ <% end %>
+ <% favourite = Favourite.find_by(user: current_user, post: @post) %>
+ <% if current_user && user_signed_in? %>
+   <% if favourite.present? %>
+     <%= link_to 'Unfavourite', post_favourite_path(@post, favourite), method: :delete %>
+   <% else %>
+     <%= link_to 'Favourite', post_favourites_path(@post), method: :post %>
+   <% end %>
+ <% end %>
+ <%= form_for [@post, @comment] do |f| %>
+   <div>
+     <%= f.text_area :body %>
+   </div>
+   <%= f.submit %>
+ <% end %>
+ <h2>Comments</h2>
+ <% @post.comments.each do |c| %>
+   <%= c.body %> |
+   <%= c.user_full_name %>
+   <% if can? :delete, c %>|
+      <%= link_to 'delete', post_comment_path(@post, c),
+                       method: :delete,
+                       data: { confirm: 'are you sure?'} %>
+   <% end %>
+   <hr>
+ <% end %>
+</div>
+</div>

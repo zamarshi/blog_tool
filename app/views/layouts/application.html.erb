@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Amazon</title>
+    <title>Blog</title>
     <%= csrf_meta_tags %>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-  <style>
-
-  </style>
+    <link href="https://fonts.googleapis.com/css?family=Catamaran|Poiret+One|Righteous|Shrikhand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+    <link rel="stylesheet" href="w3.css" media="screen" title="no title">
   </head>
+  <body>
 
-  <body class="container">
+     <!-- c h i p s &nbsp; & &nbsp; c h i p s  -->
+    <ul class="custom_navbar">
+        <li><%= link_to 'Home', root_path %> </li>
+        <li><%= link_to 'About', about_path %> </li>
+        <li><%= link_to 'New Post', new_post_path %> </li>
+        <li><%= link_to 'All Posts', posts_path %> </li>
+        <li><%= link_to 'All Tags', tags_path %> </li>
+        <% if current_user && user_signed_in? %>
+          <li class="w3-right"><%= link_to "Hey #{current_user.first_name}!", root_path %> </li>
+          <li><%= link_to 'Sign Out', sessions_path, method: :delete %> </li>
+        <% else %>
+          <li><%= link_to 'New User', new_user_path %> </li>
+          <li><%= link_to 'Sign In', new_session_path %>
+        <% end %>
+        <% if current_user && user_signed_in? %>
+        <li> <%= link_to 'Favorites', user_path(current_user) %></li>
+        <% end %>
+      </ul>
+    <br>
+    <%= notice || alert %>
+    <%= yield %>
 
-
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <ul class="nav navbar-nav">
-
-
-
-          <li><%= link_to 'Home', root_path %></li>
-          <li><%= link_to 'About', about_path %></li>
-          <li>   <%= link_to 'New Post', new_post_path %></li>
-          <li>  <%= link_to 'All Posts', posts_path %></li>
-        </ul>
-
-
-      </div>
-    </nav>
-        <%= yield %>
-    </body>
-  </html>
+  </body>
+</html>

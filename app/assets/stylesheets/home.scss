@@ -1,3 +1,140 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// font-family: 'Shrikhand', cursive;
+// font-family: 'Catamaran', sans-serif;
+// font-family: 'Poiret One', cursive;
+// font-family: 'Righteous', cursive;
+
+@import 'w3';
+
+// body {
+//   font-family: 'Cabin', sans-serif;
+// }
+$teal: #009688;
+
+
+a:hover {
+  color: $teal;
+}
+
+.tag_link a {
+  text-decoration: none;
+  &:hover {
+    color: white;
+  }
+}
+
+.entry_form {
+  @extend .w3-twothird;
+  margin: 10px;
+  display: inline-block;
+}
+
+#post_title {
+  margin: 3px;
+}
+
+input:focus {
+    outline-color: $teal;
+  }
+
+.new input {
+
+   margin-left: 8px;
+  width: 25%;
+  &:focus {
+    outline-color: $teal;
+  }
+}
+
+textarea {
+  margin-left: 0px;
+  width: 50%;
+  height: 100px;
+  &:focus {
+    outline-color: orange;
+  }
+
+}
+
+label {
+  // @extend .w3-label;
+  display:block;
+  margin-left: 10px;
+}
+
+.page_header {
+  @extend .w3-left;
+  font-size: 30px;
+  margin-left: 10px;
+  height: 50px;
+  letter-spacing: 5px
+}
+
+.things {
+  @extend .w3-container;
+  @extend .w3-teal;
+  @extend .w3-padding-48;
+  height: 200px;
+  text-align: center;
+  font-family: 'Righteous', cursive;
+  font-size: 56px;
+  opacity: 1;
+    a:hover {
+      color: orange;
+    }
+}
+
+
+.custom_navbar {
+  @extend .w3-navbar;
+  @extend .w3-card-8;
+  @extend .w3-light-grey;
+  box-shadow: .2s;
+}
+
+.welcome {
+  @extend .w3-center;
+  @extend .w3-margin;
+  font-size: 40px;
+}
+
+.about {
+  @extend .w3-margin-left;
+  @extend .w3-margin-right;
+}
+
+.green {
+  color: $teal;
+}
+
+.large-list {
+  font-size: 19px;
+}
+
+.post {
+  @extend .w3-container;
+  @extend .w3-left;
+  font-family: 'Catamaran', sans-serif;
+  width: 80%;
+  margin: 32px;
+  margin-right: 32px;
+  &.title {
+    font-size: 54px;
+    margin-bottom: 16px;
+  }
+  &.author {
+    font-size: 22px;
+  }
+}
+
+.comment_form {
+  height: 50px;
+}
+
+
+.chosen-container {
+  margin-left: 10px;
+}

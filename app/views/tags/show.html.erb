@@ -1,0 +1,6 @@
+<h3 class="page_header"><%= @tag.name.upcase! %></h3>
+<br><br><br><br>
+<% @tag.posts.each do |post| %>
+  <%= link_to post.title, post_path(post) %>
+  <hr>
+<% end %>
